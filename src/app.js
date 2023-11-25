@@ -8,10 +8,12 @@ const app = express();
 const port = process.env.PORT || 5000;
 const authRoutes = require("./routes/authentication");
 const usersRoutes = require("./routes/users");
+const surveyRoutes = require("./routes/survey");
 applyMiddleware(app);
 
 app.use(authRoutes);
 app.use(usersRoutes);
+app.use(surveyRoutes);
 app.get("/health", (req, res) => {
   res.send("SurveyOcean is running....");
 });
