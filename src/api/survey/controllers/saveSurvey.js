@@ -4,7 +4,7 @@ const saveSurvey = async (req, res) => {
   try {
     const surveyData = req.body; // Assuming the request body contains the survey data
 
-    console.log(surveyData);
+    // console.log(surveyData);
     const newSurvey = new Survey(surveyData);
 
     const savedSurvey = await newSurvey.save();
