@@ -3,14 +3,15 @@ const globalErrorHandler = require("./utils/globalErrorHandler");
 const applyMiddleware = require("./middlewares");
 const connectDB = require("./db/connectDB");
 
-
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
-const authRoutes = require('./routes/authentication');
+const authRoutes = require("./routes/authentication");
+const usersRoutes = require("./routes/users");
 applyMiddleware(app);
 
 app.use(authRoutes);
+app.use(usersRoutes);
 app.get("/health", (req, res) => {
   res.send("SurveyOcean is running....");
 });
