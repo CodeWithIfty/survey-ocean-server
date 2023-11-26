@@ -26,6 +26,10 @@ const surveySchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  vote: {
+    type: Number,
+    default: 0,
+  },
   pollQuestion: {
     type: String,
     required: true,
@@ -55,6 +59,31 @@ const surveySchema = new mongoose.Schema({
         type: String,
         required: true,
       },
+      timestamp: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
+  survey_response: [
+    {
+      respondedUser: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Users",
+        required: true,
+      },
+      responses: [
+        {
+          questionName: {
+            type: String,
+            required: true,
+          },
+          selectedOption: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
       timestamp: {
         type: Date,
         default: Date.now,

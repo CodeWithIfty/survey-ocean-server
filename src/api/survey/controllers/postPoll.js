@@ -16,6 +16,7 @@ const postPoll = async (req, res) => {
     };
 
     survey.polledBy.push(newPoll);
+    survey.vote++;
     await survey.save();
 
     res.status(200).json({ message: "Poll posted successfully" });
