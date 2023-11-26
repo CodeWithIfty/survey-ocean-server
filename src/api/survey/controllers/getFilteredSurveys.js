@@ -4,7 +4,7 @@ const getFilteredSurveys = async (req, res) => {
   const { category, sortByLikeDislike, sortByVote, searchTerm } = req.query;
 
   try {
-    let query = {};
+    let query = { isPublished: true }; // Include query for published surveys
 
     if (category) {
       query.category = category;
@@ -14,10 +14,10 @@ const getFilteredSurveys = async (req, res) => {
 
     if (sortByLikeDislike === "mostLiked") {
       sortOption = { likes: -1 };
-    } else if (sortByLikeDislike === "mostDisLiked") {
+    } else if (sortByLikeDislike === "mostDisliked") {
       sortOption = { dislikes: -1 };
     } else if (sortByVote === "mostVoted") {
-      sortOption = { vote: -1 };
+      sortOption = { "polledBy.length": -1 }; // Replace "vote" with the correct field
     }
 
     if (searchTerm) {

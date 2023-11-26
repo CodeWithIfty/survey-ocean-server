@@ -148,6 +148,10 @@ const surveySchema = new mongoose.Schema({
       },
     },
   ],
+  isPublished: {
+    type: Boolean,
+    default: true, // By default, surveys are unpublished
+  },
 });
 
 const Survey = mongoose.model("Survey", surveySchema);
