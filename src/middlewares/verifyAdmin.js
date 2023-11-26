@@ -1,6 +1,6 @@
 const Users = require("../models/Users");
 
-const verifyProUser = async (req, res, next) => {
+const verifyAdmin = async (req, res, next) => {
   const email = req.user.email;
   console.log(email);
   const query = { user_email: email };
@@ -18,4 +18,4 @@ const verifyProUser = async (req, res, next) => {
   }
 };
 
-module.exports = verifyProUser;
+module.exports = verifyAdmin;

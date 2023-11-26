@@ -6,6 +6,7 @@ const getSurveys = require("../../api/survey/controllers/getSurveys");
 const getUserSurveys = require("../../api/survey/controllers/getUserSurveys");
 const postComment = require("../../api/survey/controllers/postComment");
 const postPoll = require("../../api/survey/controllers/postPoll");
+const postReport = require("../../api/survey/controllers/postReport");
 const saveSurvey = require("../../api/survey/controllers/saveSurvey");
 const updateLikeDislike = require("../../api/survey/controllers/updateLikeDislike");
 const {
@@ -27,6 +28,7 @@ router.get("/survey/:id", getSingleSurvey);
 router.post("/like-dislike", updateLikeDislike);
 
 router.post("/comment", verifyToken, verifyProUser, postComment);
+router.post("/report", verifyToken, verifyProUser, postReport);
 
 router.post("/post-poll", postPoll);
 

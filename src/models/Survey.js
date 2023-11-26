@@ -65,6 +65,25 @@ const surveySchema = new mongoose.Schema({
       },
     },
   ],
+  reports: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Users", // Reference to the User model
+      },
+      report_message: {
+        type: String,
+      },
+      user_name: {
+        type: String,
+        required: true,
+      },
+      timestamp: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
   survey_response: [
     {
       respondedUser: {
