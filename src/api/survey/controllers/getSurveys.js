@@ -1,8 +1,9 @@
 const Survey = require("../../../models/Survey");
 
 const getSurveys = async (req, res) => {
+  
   try {
-    const surveys = await Survey.find({ isPublished: true }).sort({
+    const surveys = await Survey.find().sort({
       timestamp: -1,
     });
     res.json(surveys);

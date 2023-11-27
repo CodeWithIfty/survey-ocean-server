@@ -4,6 +4,7 @@ const {
 const getSingleSurvey = require("../../api/survey/controllers/getSingleSurvey");
 const getSurveys = require("../../api/survey/controllers/getSurveys");
 const getUserSurveys = require("../../api/survey/controllers/getUserSurveys");
+const postAdminReport = require("../../api/survey/controllers/postAdminReport");
 const postComment = require("../../api/survey/controllers/postComment");
 const postPoll = require("../../api/survey/controllers/postPoll");
 const postReport = require("../../api/survey/controllers/postReport");
@@ -12,6 +13,7 @@ const updateLikeDislike = require("../../api/survey/controllers/updateLikeDislik
 const {
   updatePublicationStatus,
 } = require("../../api/survey/controllers/updatePublicationStatus");
+const { updateSurvey } = require("../../api/survey/controllers/updateSurvey");
 const {
   updateSurveyResponse,
 } = require("../../api/survey/controllers/updateSurveyResponse");
@@ -32,6 +34,7 @@ router.post("/like-dislike", updateLikeDislike);
 
 router.post("/comment", verifyToken, verifyProUser, postComment);
 router.post("/report", verifyToken, postReport);
+router.post("/admin-report", verifyToken, verifyAdmin, postAdminReport);
 
 router.post("/post-poll", postPoll);
 
@@ -40,6 +43,13 @@ router.post("/survey/response", updateSurveyResponse);
 router.get("/get-filtered-survey", getFilteredSurveys);
 
 router.put("/survey/publish", updatePublicationStatus);
+
+router.put(
+  "/update-survey/:surveyId",
+  verifyToken,
+  verifySurveyor,
+  updateSurvey
+);
 
 router.get(
   "/user-surveys/:userId",
