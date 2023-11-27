@@ -3,7 +3,7 @@ const Survey = require("../../../models/Survey");
 const updateSurvey = async (req, res) => {
   const { surveyId } = req.params;
   const updateFields = req.body; // Fields to be updated
-  console.log(updateFields);
+  // console.log(updateFields);
 
   try {
     const survey = await Survey.findById(surveyId);

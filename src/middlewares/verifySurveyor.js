@@ -2,7 +2,7 @@ const Users = require("../models/Users");
 
 const verifySurveyor = async (req, res, next) => {
   const email = req.user.email;
-  console.log(email);
+  // console.log(email);
   const query = { user_email: email };
 
   try {

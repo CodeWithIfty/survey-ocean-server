@@ -42,6 +42,9 @@ const surveySchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  deadline: {
+    type: Date,
+  },
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Users", // Reference to the User model
