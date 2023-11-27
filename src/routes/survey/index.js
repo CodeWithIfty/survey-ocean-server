@@ -1,4 +1,7 @@
 const {
+  getLatestPublishedSurveys,
+} = require("../../api/survey/controllers/getFeaturedSurveys");
+const {
   getFilteredSurveys,
 } = require("../../api/survey/controllers/getFilteredSurveys");
 const getSingleSurvey = require("../../api/survey/controllers/getSingleSurvey");
@@ -38,9 +41,10 @@ router.post("/admin-report", verifyToken, verifyAdmin, postAdminReport);
 
 router.post("/post-poll", postPoll);
 
-router.post("/survey/response", updateSurveyResponse);
+router.post("/survey/response", verifyToken, updateSurveyResponse);
 
 router.get("/get-filtered-survey", getFilteredSurveys);
+router.get("/get-featured-surveys", getLatestPublishedSurveys);
 
 router.put("/survey/publish", updatePublicationStatus);
 
