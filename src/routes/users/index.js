@@ -1,6 +1,9 @@
+const createPaymentIntent = require("../../api/users/controllers/createPaymentIntent");
 const { deleteUser } = require("../../api/users/controllers/deleteUser");
+const getAllPayments = require("../../api/users/controllers/getAllPayments");
 const getUserRole = require("../../api/users/controllers/getUserRole");
 const getUsers = require("../../api/users/controllers/getUsers");
+const postPaymentInfo = require("../../api/users/controllers/postPaymentInfo");
 const saveUser = require("../../api/users/controllers/saveUser");
 const {
   updateUserRole,
@@ -16,7 +19,14 @@ router.get("/user/:email", verifyToken, getUserRole);
 
 router.get("/users", verifyToken, verifyAdmin, getUsers);
 
-router.put("/updateUserRole", verifyToken, verifyAdmin, updateUserRole);
+router.put("/updateUserRole", verifyToken, updateUserRole);
 
 router.delete("/delete-user/:id", verifyToken, verifyAdmin, deleteUser);
+
+router.post("/create-payment-intent", verifyToken, createPaymentIntent);
+
+router.post("/post-user-payment-details", verifyToken, postPaymentInfo);
+
+router.get("/payments", verifyToken, verifyAdmin, getAllPayments);
+
 module.exports = router;

@@ -2,7 +2,6 @@ const express = require("express");
 const globalErrorHandler = require("./utils/globalErrorHandler");
 const applyMiddleware = require("./middlewares");
 const connectDB = require("./db/connectDB");
-
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
@@ -14,6 +13,21 @@ applyMiddleware(app);
 app.use(authRoutes);
 app.use(usersRoutes);
 app.use(surveyRoutes);
+
+// app.post("/create-payment-intent", async (req, res) => {
+//   const { price } = req.body;
+//   const amount = parseInt(price * 100);
+//   const paymentIntent = await stripe.paymentIntents.create({
+//     amount: amount,
+//     currency: "usd",
+//     payment_method_types: ["card"],
+//   });
+
+//   res.send({
+//     clientSecret: paymentIntent.client_secret,
+//   });
+// });
+
 app.get("/health", (req, res) => {
   res.send("SurveyOcean is running....");
 });
