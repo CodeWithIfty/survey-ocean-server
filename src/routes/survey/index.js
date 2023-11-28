@@ -5,6 +5,7 @@ const {
   getFilteredSurveys,
 } = require("../../api/survey/controllers/getFilteredSurveys");
 const getSingleSurvey = require("../../api/survey/controllers/getSingleSurvey");
+const getSurveyorAnalyticsData = require("../../api/survey/controllers/getSurveyorAnalyticsData");
 const getSurveys = require("../../api/survey/controllers/getSurveys");
 const getUserSurveys = require("../../api/survey/controllers/getUserSurveys");
 const postAdminReport = require("../../api/survey/controllers/postAdminReport");
@@ -31,22 +32,28 @@ router.post("/survey", saveSurvey);
 
 router.get("/surveys", getSurveys);
 
-router.get("/survey/:id", getSingleSurvey);
+router.get("/survey/:id", verifyToken, getSingleSurvey);
 
-router.post("/like-dislike", updateLikeDislike);
+router.post("/like-dislike", verifyToken, updateLikeDislike);
 
 router.post("/comment", verifyToken, verifyProUser, postComment);
 router.post("/report", verifyToken, postReport);
 router.post("/admin-report", verifyToken, verifyAdmin, postAdminReport);
 
-router.post("/post-poll", postPoll);
+router.post("/post-poll", verifyToken, postPoll);
 
 router.post("/survey/response", verifyToken, updateSurveyResponse);
 
 router.get("/get-filtered-survey", getFilteredSurveys);
+
 router.get("/get-featured-surveys", getLatestPublishedSurveys);
 
-router.put("/survey/publish", updatePublicationStatus);
+router.put(
+  "/survey/publish",
+  verifyToken,
+  verifyAdmin,
+  updatePublicationStatus
+);
 
 router.put(
   "/update-survey/:surveyId",
@@ -61,5 +68,7 @@ router.get(
   verifySurveyor,
   getUserSurveys
 );
+
+router.get("/surveyor-analytics/:authorId", getSurveyorAnalyticsData);
 
 module.exports = router;
