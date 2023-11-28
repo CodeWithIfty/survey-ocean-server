@@ -1,5 +1,6 @@
 const createPaymentIntent = require("../../api/users/controllers/createPaymentIntent");
 const { deleteUser } = require("../../api/users/controllers/deleteUser");
+const getAdminAnalyticsData = require("../../api/users/controllers/getAdminAnalyticsData");
 const getAllPayments = require("../../api/users/controllers/getAllPayments");
 const getUserRole = require("../../api/users/controllers/getUserRole");
 const getUsers = require("../../api/users/controllers/getUsers");
@@ -28,5 +29,6 @@ router.post("/create-payment-intent", verifyToken, createPaymentIntent);
 router.post("/post-user-payment-details", verifyToken, postPaymentInfo);
 
 router.get("/payments", verifyToken, verifyAdmin, getAllPayments);
+router.get("/admin-analytics", verifyToken, verifyAdmin, getAdminAnalyticsData);
 
 module.exports = router;
