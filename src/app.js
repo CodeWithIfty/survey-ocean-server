@@ -14,8 +14,6 @@ app.use(authRoutes);
 app.use(usersRoutes);
 app.use(surveyRoutes);
 
-
-
 app.get("/health", (req, res) => {
   res.send("SurveyOcean is running....");
 });
@@ -28,11 +26,13 @@ app.all("*", (req, res, next) => {
 
 app.use(globalErrorHandler);
 
-const main = async () => {
-  await connectDB();
-  app.listen(port, () => {
-    console.log(`SurveyOcean Server is running on port ${port}`);
-  });
-};
+// const main = async () => {
+//   await connectDB();
+//   app.listen(port, () => {
+//     console.log(`SurveyOcean Server is running on port ${port}`);
+//   });
+// };
 
-main();
+// main();
+
+module.exports = app;
