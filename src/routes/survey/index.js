@@ -32,7 +32,7 @@ router.post("/survey", saveSurvey);
 
 router.get("/surveys", getSurveys);
 
-router.get("/survey/:id", verifyToken, getSingleSurvey);
+router.get("/survey/:id", getSingleSurvey);
 
 router.post("/like-dislike", verifyToken, updateLikeDislike);
 
